@@ -29,7 +29,9 @@ namespace Northwind_OData_Breeze.Controllers
         [HttpGet]
         public IQueryable<Product> Products()
         {
-            return _contextProvider.Context.Products;
+            // providing a default order by criteria which
+            // will be overwritten if a $orderby parameter was provided
+            return _contextProvider.Context.Products.OrderBy(x => x.ID);
         }
 
         // ~/breeze/Northwind/SaveChanges
