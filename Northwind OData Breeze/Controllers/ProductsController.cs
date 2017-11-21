@@ -12,7 +12,7 @@ using System.Web.Http;
 
 namespace Northwind_OData_Breeze.Controllers
 {
-    [BreezeController(AllowedQueryOptions =System.Web.Http.OData.Query.AllowedQueryOptions.All)]
+    [BreezeController(AllowedQueryOptions = System.Web.Http.OData.Query.AllowedQueryOptions.All)]
     public class NorthwindController : ApiController
     {
         readonly EFContextProvider<NorthwindContext> _contextProvider = new EFContextProvider<NorthwindContext>();
