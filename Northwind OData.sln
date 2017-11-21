@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind OData Proxy", "Northwind OData Proxy\Northwind OData Proxy.csproj", "{D47E513B-9956-4A7C-845B-C582E1D8897E}"
 EndProject
@@ -19,9 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind OData EF", "North
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind OData Breeze", "Northwind OData Breeze\Northwind OData Breeze.csproj", "{155F2E37-13A7-4E1A-BE21-1C8A1D18880F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{0534A8B5-D749-47D8-BA38-7C58EB6F4D52}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind Breeze Sharp Client", "Northwind Breeze Client\Northwind Breeze Sharp Client.csproj", "{AC2162D9-3D09-4DC2-B109-3963BF5CC2E3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind OData Model", "Northwind OData Model\Northwind OData Model.csproj", "{64479B1A-F71D-4F8A-9D7F-BA032E5930F3}"
 EndProject
 Global
@@ -57,9 +56,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{AC2162D9-3D09-4DC2-B109-3963BF5CC2E3} = {0534A8B5-D749-47D8-BA38-7C58EB6F4D52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6CE37FC2-6431-46BA-B2D0-66ACA34B275C}
