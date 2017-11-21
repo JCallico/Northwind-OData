@@ -103,6 +103,54 @@ namespace Northwind_Breeze_Client
         }
 
         [TestMethod]
+        public async Task Products_Slice()
+        {
+            var entityManager = new EntityManager(_serviceName);
+
+            // All instances of Product
+            var query = new EntityQuery<Product>().OrderBy(i=>i.ProductName).Skip(10).Take(20);                        
+
+            // Handle async Task results explicitly
+            await entityManager.ExecuteQuery(query).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    var message = TestFns.FormatException(task.Exception);
+                    Assert.Fail(message);
+                }
+                else
+                {
+                    var count = task.Result.Count();
+                    Assert.IsTrue(count == 20, "Product query returned " + count + " Products");
+                }
+            });
+        }
+
+        [TestMethod]
+        public async Task Products_InlineCount()
+        {
+            var entityManager = new EntityManager(_serviceName);
+
+            // All instances of Product
+            var query = new EntityQuery<Product>().Where(i=>i.ProductName.StartsWith("A")).InlineCount();
+
+            // Handle async Task results explicitly
+            await entityManager.ExecuteQuery(query).ContinueWith(task =>
+            {
+                if (task.IsFaulted)
+                {
+                    var message = TestFns.FormatException(task.Exception);
+                    Assert.Fail(message);
+                }
+                else
+                {
+                    var count = ((IHasInlineCount)task.Result).InlineCount;
+                    Assert.IsTrue(count == 2, "There are " + count + " products with name starting with 'A'");
+                }
+            });
+        }
+
+        [TestMethod]
         public async Task AllProducts_Exceptions()
         {
             var entityManager = new EntityManager(_serviceName);

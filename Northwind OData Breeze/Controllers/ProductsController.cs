@@ -12,27 +12,27 @@ using System.Web.Http;
 
 namespace Northwind_OData_Breeze.Controllers
 {
-    [BreezeController]
+    [BreezeController(AllowedQueryOptions = System.Web.Http.OData.Query.AllowedQueryOptions.All)]
     public class NorthwindController : ApiController
     {
         readonly EFContextProvider<NorthwindContext> _contextProvider = new EFContextProvider<NorthwindContext>();
 
-        // ~/breeze/todos/Metadata 
+        // ~/breeze/Northwind/Metadata 
         [HttpGet]
         public string Metadata()
         {
             return _contextProvider.Metadata();
         }
 
-        // ~/breeze/todos/Todos
-        // ~/breeze/todos/Todos?$filter=IsArchived eq false&$orderby=CreatedAt 
+        // ~/breeze/Northwind/Products
+        // ~/breeze/Northwind/Products?$filter=IsArchived eq false&$orderby=CreatedAt 
         [HttpGet]
         public IQueryable<Product> Products()
         {
             return _contextProvider.Context.Products;
         }
 
-        // ~/breeze/todos/SaveChanges
+        // ~/breeze/Northwind/SaveChanges
         [HttpPost]
         public SaveResult SaveChanges(JObject saveBundle)
         {
