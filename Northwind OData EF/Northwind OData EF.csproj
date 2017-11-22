@@ -125,7 +125,7 @@
   <ItemGroup>
     <Compile Include="App_Start\DapperConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GenericODataController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Extensions\ODataQueryOptionsExtensions.cs" />
     <Compile Include="Filters\BasicAuthenticationAttribute.cs" />
