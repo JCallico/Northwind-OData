@@ -10,7 +10,7 @@ namespace Northwind_OData
         protected void Application_Start()
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            GlobalConfiguration.Configure(DapperConfig.Register);
+            GlobalConfiguration.Configure(EFConfig.Register);
         }
     }
 }

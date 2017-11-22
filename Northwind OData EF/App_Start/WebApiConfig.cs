@@ -15,7 +15,7 @@ namespace GSA.Samples.Northwind.OData
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
                 routePrefix: null,
-                model: NorthwindModel.GetConventionModel());
+                model: NorthwindContext.GetConventionModel());
 
             var traceWriter = config.EnableSystemDiagnosticsTracing();
             traceWriter.IsVerbose = true;

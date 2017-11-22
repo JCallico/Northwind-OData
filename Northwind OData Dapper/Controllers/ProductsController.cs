@@ -14,7 +14,7 @@ using GSA.Samples.Northwind.OData.Model;
 
 namespace GSA.Samples.Northwind.OData.Controllers
 {
-    public class ProductsController : BaseController<Product>
+    public class ProductsController : BaseController<Product, Guid>
     {
         private static readonly int _defaultPageSize = 50;
 

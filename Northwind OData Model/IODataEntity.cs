@@ -2,8 +2,8 @@
 
 namespace GSA.Samples.Northwind.OData.Models
 {
-    public interface IEntity
+    public interface IODataEntity<TKey>
     {
-        Guid ID { get; set; }
+        TKey ID { get; set; }
     }
 }

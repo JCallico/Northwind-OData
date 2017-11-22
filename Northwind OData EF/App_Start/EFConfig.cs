@@ -2,7 +2,7 @@
 
 namespace GSA.Samples.Northwind.OData.App_Start
 {
-    public static class DapperConfig
+    public static class EFConfig
     {
         public static void Register(HttpConfiguration config)
         {

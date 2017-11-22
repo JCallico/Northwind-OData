@@ -1,8 +1,5 @@
-﻿using System.Diagnostics;
-using System.Web.Hosting;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.OData.Extensions;
-using GSA.Samples.Northwind.OData.Model;
 using GSA.Samples.Northwind.OData.Models;
 using TraceLevel = System.Web.Http.Tracing.TraceLevel;
 
@@ -15,7 +12,7 @@ namespace GSA.Samples.Northwind.OData.App_Start
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
                 routePrefix: null,
-                model: NorthwindModel.GetConventionModel());
+                model: NorthwindContext.GetConventionModel());
 
             var traceWriter = config.EnableSystemDiagnosticsTracing();
             traceWriter.IsVerbose = true;

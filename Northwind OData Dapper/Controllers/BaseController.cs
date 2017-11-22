@@ -11,7 +11,7 @@ namespace GSA.Samples.Northwind.OData.Controllers
 {
     [KeyAndSecretBasicAuthentication] // Enable authentication via an ASP.NET Identity user name and password
     [Authorize] // Require some form of authentication
-    public class BaseController<E> : ODataController where E : class, IEntity
+    public class BaseController<E, TKey> : ODataController where E : class, IODataEntity<TKey>
     {
         private IDbConnection _db = new SqlConnection(ConfigurationManager.ConnectionStrings["NorthwindContext"].ConnectionString);
 
