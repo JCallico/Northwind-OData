@@ -10,7 +10,7 @@ Implementations included:
 
 See Product entity for an example of how to support different key properties for EF and OData.
 
-- The property is the ProductID is the internal EF key used for navigation properties and relationships.
+- The property ProductID is the internal EF key used for navigation properties and relationships.
 - The property ID, which maps to the ProductUniqueID column, is used as key for OData queries.
 
 ### Change log
