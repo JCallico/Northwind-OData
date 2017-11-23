@@ -22,6 +22,10 @@ namespace GSA.Samples.Northwind.OData.Model
 
             builder.EntitySet<Order>("Orders");
 
+            builder.EntitySet<Region>("Regions");
+
+            builder.EntitySet<Territory>("Territories");
+
             return builder.GetEdmModel();
         }
     }

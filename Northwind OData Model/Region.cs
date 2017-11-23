@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace GSA.Samples.Northwind.OData.Model
 {
     using System;
@@ -7,7 +9,7 @@ namespace GSA.Samples.Northwind.OData.Model
     using System.Data.Entity.Spatial;
 
     [Table("Region")]
-    public partial class Region
+    public partial class Region : ODataEntity<Region, int>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Region()
@@ -24,5 +26,14 @@ namespace GSA.Samples.Northwind.OData.Model
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Territory> Territories { get; set; }
+
+        #region IODataEntity members implementation
+
+        public override Expression<Func<Region, bool>> HasID(int identifierToCompare)
+        {
+            return e => e.RegionID == identifierToCompare;
+        }
+
+        #endregion
     }
 }
