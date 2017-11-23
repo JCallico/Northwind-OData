@@ -33,7 +33,7 @@ namespace GSA.Samples.Northwind.OData.Model
                 .Map(m => m.ToTable("CustomerCustomerDemo").MapLeftKey("CustomerTypeID").MapRightKey("CustomerID"));
 
             modelBuilder.Entity<Customer>()
-                .Property(e => e.ID)
+                .Property(e => e.CustomerID)
                 .IsFixedLength();
 
             modelBuilder.Entity<Employee>()

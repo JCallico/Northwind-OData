@@ -13,6 +13,8 @@ namespace GSA.Samples.Northwind.OData.Model
 
             builder.ContainerName = "NorthwindContainer";
 
+            builder.EntitySet<Category>("Categories");
+
             builder.EntitySet<Customer>("Customers");
 
             var entitySet = builder.EntitySet<Product>("Products");

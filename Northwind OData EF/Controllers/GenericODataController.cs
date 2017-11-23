@@ -6,8 +6,6 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.OData;
 using System.Web.Http;
-
-using GSA.Samples.Northwind.OData.Models;
 using GSA.Samples.Northwind.OData.Common.Filters;
 using GSA.Samples.Northwind.OData.Model;
 
@@ -15,7 +13,7 @@ namespace GSA.Samples.Northwind.OData.Controllers
 {
     [KeyAndSecretBasicAuthentication] // Enable authentication via an ASP.NET Identity user name and password
     [Authorize] // Require some form of authentication
-    public abstract class GenericODataController<E, TKey> : ODataController where E : class, IODataEntity<TKey>
+    public abstract class GenericODataController<TEntity, TKey> : ODataController where TEntity : class, IODataEntity<TEntity, TKey>, new()
     {
         #region Fields
 
@@ -30,22 +28,28 @@ namespace GSA.Samples.Northwind.OData.Controllers
         #region Public Methods
 
         [EnableQuery]
-        public virtual IQueryable<E> Get()
+        public virtual IQueryable<TEntity> Get()
         {
-            return Db.Set<E>();
+            return Db.Set<TEntity>();
         }
 
         [EnableQuery]
-        public virtual SingleResult<E> Get([FromODataUri] TKey key)
+        public virtual async Task<IHttpActionResult> Get([FromODataUri] TKey key)
         {
             //// Can't compare using key == p.ID because of error: operator '==' cannot be applied to operands of type 'TKey' and 'TKey'
-            //// using Contains instead which will be translated to SQL as an equality comparison if the list contains one element
-            var result = Db.Set<E>().Where(p => new[] { key }.Contains(p.ID));
-            return SingleResult.Create(result);
+            var result = await Db.Set<TEntity>().Where(new TEntity().HasID(key)).FirstOrDefaultAsync();
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+
+            //return SingleResult.Create(result);
         }
 
         [EnableQuery]
-        public virtual async Task<IHttpActionResult> Post(E entity)
+        public virtual async Task<IHttpActionResult> Post(TEntity entity)
         {
             if (!ModelState.IsValid)
             {
@@ -54,7 +58,7 @@ namespace GSA.Samples.Northwind.OData.Controllers
 
             try
             {
-                Db.Set<E>().Add(entity);
+                Db.Set<TEntity>().Add(entity);
 
                 await Db.SaveChangesAsync();
 
@@ -72,7 +76,7 @@ namespace GSA.Samples.Northwind.OData.Controllers
         }
 
         [EnableQuery]
-        public virtual async Task<IHttpActionResult> Put([FromODataUri] TKey key, Delta<E> fullEntity)
+        public virtual async Task<IHttpActionResult> Put([FromODataUri] TKey key, Delta<TEntity> fullEntity)
         {
             if (!ModelState.IsValid)
             {
@@ -84,8 +88,8 @@ namespace GSA.Samples.Northwind.OData.Controllers
             {
                 return BadRequest();
             }
-
-            var entity = await Db.Set<E>().FirstOrDefaultAsync(p => new[] { key }.Contains(p.ID));
+            
+            var entity = await Db.Set<TEntity>().FirstOrDefaultAsync(new TEntity().HasID(key));
 
             if (entity == null)
             {
@@ -114,14 +118,14 @@ namespace GSA.Samples.Northwind.OData.Controllers
         }
 
         [EnableQuery]
-        public virtual async Task<IHttpActionResult> Patch([FromODataUri] TKey key, Delta<E> partialEntity)
+        public virtual async Task<IHttpActionResult> Patch([FromODataUri] TKey key, Delta<TEntity> partialEntity)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var entity = await Db.Set<E>().FirstOrDefaultAsync(p => new[] { key }.Contains(p.ID));
+            var entity = await Db.Set<TEntity>().FirstOrDefaultAsync(new TEntity().HasID(key));
 
             if (entity == null)
             {
@@ -150,14 +154,14 @@ namespace GSA.Samples.Northwind.OData.Controllers
         [EnableQuery]
         public virtual async Task<IHttpActionResult> Delete([FromODataUri] TKey key)
         {
-            var product = await Db.Set<E>().FirstOrDefaultAsync(p => new[] { key }.Contains(p.ID));
+            var product = await Db.Set<TEntity>().FirstOrDefaultAsync(new TEntity().HasID(key));
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            Db.Set<E>().Remove(product);
+            Db.Set<TEntity>().Remove(product);
 
             await Db.SaveChangesAsync();
 
@@ -176,7 +180,7 @@ namespace GSA.Samples.Northwind.OData.Controllers
 
         protected virtual bool EntityExists(TKey key)
         {
-            return Db.Set<E>().Any(p => new[] { key }.Contains(p.ID));
+            return Db.Set<TEntity>().Any(new TEntity().HasID(key));
         }
 
         #endregion

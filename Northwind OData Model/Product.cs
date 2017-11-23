@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq.Expressions;
 using System.Web.OData.Query;
 
 namespace GSA.Samples.Northwind.OData.Model
@@ -9,7 +10,7 @@ namespace GSA.Samples.Northwind.OData.Model
     [Table("Products")]
     [Page(MaxTop = 1000, PageSize = 50)]
     [Count(Disabled = false)]
-    public partial class Product: ODataEntity<Guid>
+    public partial class Product: ODataEntity<Product, Guid>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
@@ -17,9 +18,9 @@ namespace GSA.Samples.Northwind.OData.Model
             OrderDetails = new HashSet<Order_Detail>();
         }
 
-        // Required by OData base entity
+        // Testing using a property name different than the column name
         [Column("ProductUniqueID")]
-        public override Guid ID { get; set; }
+        public Guid ID { get; set; }
 
         // Do not use Key attribute for entities that have an internal key for EF
         // and a different key property for OData
@@ -62,5 +63,14 @@ namespace GSA.Samples.Northwind.OData.Model
         public virtual ICollection<Order_Detail> OrderDetails { get; set; }
 
         public virtual Supplier Supplier { get; set; }
+
+        #region IODataEntity members implementation
+
+        public override Expression<Func<Product, bool>> HasID(Guid identifierToCompare)
+        {
+           return e => e.ID == identifierToCompare;
+        }
+
+        #endregion
     }
 }

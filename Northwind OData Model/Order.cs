@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace GSA.Samples.Northwind.OData.Model
 {
     using System;
@@ -6,7 +8,7 @@ namespace GSA.Samples.Northwind.OData.Model
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Order : ODataEntity<int>
+    public partial class Order : ODataEntity<Order, int>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
@@ -16,8 +18,7 @@ namespace GSA.Samples.Northwind.OData.Model
 
         // Required by OData base entity
         [Key]
-        [Column("OrderID")]
-        public override int ID { get; set; }
+        public int OrderID { get; set; }
 
         [StringLength(5)]
         public string CustomerID { get; set; }
@@ -61,5 +62,14 @@ namespace GSA.Samples.Northwind.OData.Model
         public virtual ICollection<Order_Detail> OrderDetails { get; set; }
 
         public virtual Shipper Shipper { get; set; }
+
+        #region IODataEntity members implementation
+
+        public override Expression<Func<Order, bool>> HasID(int identifierToCompare)
+        {
+            return e => e.OrderID == identifierToCompare;
+        }
+
+        #endregion
     }
 }

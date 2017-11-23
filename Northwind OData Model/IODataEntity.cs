@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq.Expressions;
 
-namespace GSA.Samples.Northwind.OData.Models
+namespace GSA.Samples.Northwind.OData.Model
 {
-    public interface IODataEntity<TKey>
+    public interface IODataEntity<TEntity, in TKey>
     {
-        TKey ID { get; set; }
+        Expression<Func<TEntity, bool>> HasID(TKey identifierToCompare);
     }
 }

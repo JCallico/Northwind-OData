@@ -1,10 +1,10 @@
 ﻿using System;
-using GSA.Samples.Northwind.OData.Models;
+using System.Linq.Expressions;
 
 namespace GSA.Samples.Northwind.OData.Model
 {
-    public abstract class ODataEntity<TKey> : IODataEntity<TKey>
+    public abstract class ODataEntity<TEntity, TKey> : IODataEntity<TEntity, TKey>
     {
-        public abstract TKey ID { get; set; }
+        public abstract Expression<Func<TEntity, bool>> HasID(TKey identifierToCompare);
     }
 }
