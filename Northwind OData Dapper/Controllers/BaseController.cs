@@ -5,7 +5,7 @@ using System.Web.OData;
 using System.Web.Http;
 
 using GSA.Samples.Northwind.OData.Models;
-using GSA.Samples.Northwind.OData.Filters;
+using GSA.Samples.Northwind.OData.Common.Filters;
 
 namespace GSA.Samples.Northwind.OData.Controllers
 {

@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind Breeze Sharp Clie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind OData Model", "Northwind OData Model\Northwind OData Model.csproj", "{64479B1A-F71D-4F8A-9D7F-BA032E5930F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind OData Common", "Northwind OData Common\Northwind OData Common.csproj", "{0651D36B-744A-42E6-AD76-E891003CB4AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{64479B1A-F71D-4F8A-9D7F-BA032E5930F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64479B1A-F71D-4F8A-9D7F-BA032E5930F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64479B1A-F71D-4F8A-9D7F-BA032E5930F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0651D36B-744A-42E6-AD76-E891003CB4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0651D36B-744A-42E6-AD76-E891003CB4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0651D36B-744A-42E6-AD76-E891003CB4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0651D36B-744A-42E6-AD76-E891003CB4AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

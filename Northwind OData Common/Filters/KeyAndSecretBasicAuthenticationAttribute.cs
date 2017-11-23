@@ -4,7 +4,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GSA.Samples.Northwind.OData.Filters
+namespace GSA.Samples.Northwind.OData.Common.Filters
 {
     public class KeyAndSecretBasicAuthenticationAttribute : BasicAuthenticationAttribute
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web.OData.Query;
 
-namespace GSA.Samples.Northwind.OData.Extensions
+namespace GSA.Samples.Northwind.OData.Common.Extensions
 {
     public static class ODataQueryOptionsExtensions
     {

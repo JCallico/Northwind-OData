@@ -9,7 +9,7 @@ using System.Web.OData;
 using System.Web.OData.Extensions;
 using System.Web.OData.Query;
 using Dapper;
-using GSA.Samples.Northwind.OData.Extensions;
+using GSA.Samples.Northwind.OData.Common.Extensions;
 using GSA.Samples.Northwind.OData.Model;
 
 namespace GSA.Samples.Northwind.OData.Controllers

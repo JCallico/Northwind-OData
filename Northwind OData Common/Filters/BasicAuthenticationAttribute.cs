@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Filters;
-using GSA.Samples.Northwind.OData.Results;
+using GSA.Samples.Northwind.OData.Common.Results;
 
-namespace GSA.Samples.Northwind.OData.Filters
+namespace GSA.Samples.Northwind.OData.Common.Filters
 {
     public abstract class BasicAuthenticationAttribute : Attribute, IAuthenticationFilter
     {

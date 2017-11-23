@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GSA.Samples.Northwind.OData.Extensions
+namespace GSA.Samples.Northwind.OData.Common.Extensions
 {
     public static class GuidExtensions 
     {

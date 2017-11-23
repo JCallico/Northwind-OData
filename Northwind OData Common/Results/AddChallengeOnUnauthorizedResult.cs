@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace GSA.Samples.Northwind.OData.Results
+namespace GSA.Samples.Northwind.OData.Common.Results
 {
     public class AddChallengeOnUnauthorizedResult : IHttpActionResult
     {

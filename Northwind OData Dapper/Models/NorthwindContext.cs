@@ -9,10 +9,10 @@ namespace GSA.Samples.Northwind.OData.Models
         public static IEdmModel GetConventionModel()
         {
             ODataModelBuilder builder = new ODataConventionModelBuilder();
+            
+            builder.Namespace = "Northwind";
 
-            builder.Namespace = "Demos";
-
-            builder.ContainerName = "DefaultContainer";
+            builder.ContainerName = "NorthwindContainer";
 
             var entitySet = builder.EntitySet<Product>("Products");
             entitySet.EntityType.Select(nameof(Product.ID));
