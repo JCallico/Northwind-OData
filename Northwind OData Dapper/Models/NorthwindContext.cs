@@ -15,6 +15,7 @@ namespace GSA.Samples.Northwind.OData.Models
             builder.ContainerName = "NorthwindContainer";
 
             var entitySet = builder.EntitySet<Product>("Products");
+            entitySet.EntityType.HasKey(x => x.ID);
             entitySet.EntityType.Select(nameof(Product.ID));
             entitySet.EntityType.Select(nameof(Product.ProductName));
             entitySet.EntityType.Select(nameof(Product.UnitPrice));

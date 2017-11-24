@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\GSA.Samples.Northwind.OData.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -166,6 +167,10 @@
     <ProjectReference Include="..\Northwind OData Model\Northwind OData Model.csproj">
       <Project>{64479b1a-f71d-4f8a-9d7f-ba032e5930f3}</Project>
       <Name>Northwind OData Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Northwind OData Swagger\Northwind OData Swagger.csproj">
+      <Project>{73e044a5-3428-44f4-acb5-dc28ed8438e4}</Project>
+      <Name>Northwind OData Swagger</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

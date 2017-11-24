@@ -8,8 +8,8 @@ namespace GSA.Samples.Northwind.OData.Common.Filters
 {
     public class KeyAndSecretBasicAuthenticationAttribute : BasicAuthenticationAttribute
     {
-        protected virtual string Key => ConfigurationManager.AppSettings["Web.Api.Basic.Authentication.Key"];
-        protected virtual string Secret => ConfigurationManager.AppSettings["Web.Api.Basic.Authentication.Secret"];
+        protected virtual string Key => ConfigurationManager.AppSettings["OData.Api.Basic.Authentication.Key"];
+        protected virtual string Secret => ConfigurationManager.AppSettings["OData.Api.Basic.Authentication.Secret"];
 
         protected override async Task<IPrincipal> AuthenticateAsync(string userName, string password, CancellationToken cancellationToken)
         {
