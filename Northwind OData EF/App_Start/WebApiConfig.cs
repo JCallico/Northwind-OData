@@ -5,6 +5,9 @@ using TraceLevel = System.Web.Http.Tracing.TraceLevel;
 
 namespace GSA.Samples.Northwind.OData
 {
+    using System;
+    using System.Configuration;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
@@ -17,9 +20,12 @@ namespace GSA.Samples.Northwind.OData
                 routePrefix: null,
                 model: NorthwindContext.GetConventionModel());
 
-            var traceWriter = config.EnableSystemDiagnosticsTracing();
-            traceWriter.IsVerbose = true;
-            traceWriter.MinimumLevel = TraceLevel.Debug;
+            if (bool.Parse(ConfigurationManager.AppSettings["SystemDiagnostics.Tracing.Enabled"] ?? "false"))
+            {
+                var traceWriter = config.EnableSystemDiagnosticsTracing();
+                traceWriter.IsVerbose = bool.Parse(ConfigurationManager.AppSettings["SystemDiagnostics.Tracing.Verbose"] ?? "false");
+                traceWriter.MinimumLevel = (TraceLevel)Enum.Parse(typeof(TraceLevel), ConfigurationManager.AppSettings["SystemDiagnostics.Tracing.MinimumLevel"] ?? "Debug");
+            }
         }
     }
 }
